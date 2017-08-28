@@ -7,50 +7,64 @@
 </head>
 
 <body>
+
     <header>
         <h1>Crop Base64 Images</h1>
     </header>
+
+    <!--Images section  -->
     <section>
         <div class="row">
-            <div class="col-6">
+            <div class="col-6 images">
                 <img src="" alt="Source image" id="sourceImage" />
             </div>
-            <div class="col-6">
+            <div class="col-6 images">
                 <img src="" alt="Cropped image" id="croppedImage" />
             </div>
         </div>
     </section>
-    <section>
+
+    <!--Image manipulation/cropping params  -->
+    <section class="inputParams">
         <h3>Provide inputs</h3>
+
         <label for="width">Width</label>
         <input type="number" name="width" #width id="width" placeholder="defaults to 400" value="400">
+
         <label for="height">Height</label>
         <input type="number" id="height" name="height" #height placeholder="defaults to 300" value="300">
-        <label>Provide Image file if needed</label>
+
+        <label for="xstart">X-Start</label>
+        <input type="number" id="xstart" name="xstart" #xstart placeholder="The x coordinate where to start clipping.(default=0)" value="0">
+
+        <label for="ystart">Y-Start</label>
+        <input type="number" id="ystart" name="ystart" #ystart placeholder="The x coordinate where to start clipping.(default=0)" value="0">
+
+        <label for="inputFile">Provide Image file if needed</label>
         <!-- <img src="" alt="Load Source image" id="souceImage"/> -->
-        <input type="file" name="inputfile" #inputfile id="inutfile" />
+        <input type="file" onchange="readImage(this)" name="inputfile" #inputfile id="inutfile" accept="image/*" />
+        <sub>*jpeg, png etc.</sub>
+
         <div class="row">
             <div class="col-6">
-                <textarea id="sourceImageTextBox" rows="10" cols="100" placeholder="put your base64 image string"></textarea>
+                <textarea onchange="updateImageSrc()" id="sourceImageTextBox" rows="10" cols="75" placeholder="put your base64 image string"></textarea>
             </div>
             <div class="col-6">
-                <textarea id="croppedImageTextBox" rows="10" cols="100" placeholder="cropped base64 image string"></textarea>
+                <textarea id="croppedImageTextBox" rows="10" cols="75" placeholder="cropped base64 image string"></textarea>
             </div>
         </div>
 
-        <input type="submit" onclick="crop()" />
-
-
-
+        <input type="submit" onclick="crop()" value="Crop"/>
     </section>
-    <!-- <section> -->
 
-    <!-- </section> -->
+    <!-- Scripts -->
     <script src="crop.js"></script>
     <script src="loadimage.js"></script>
+
     <footer>
-        Footer
+        License: GNU Public License 3.0
     </footer>
+
 </body>
 
 </html>

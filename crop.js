@@ -6,9 +6,10 @@
    * @param height 
    */
 
-function cropImage(imgUri, width = 400, height = 300, callback) {
+function cropImage(imgUri, width = 400, height = 300, xstart=0, ystart=0, callback) {
     try {
 
+        console.log("Values in crop", width, height);
         let resize_canvas = document.createElement('canvas');
         let orig_src = new Image();
         orig_src.src = imgUri;
@@ -16,7 +17,7 @@ function cropImage(imgUri, width = 400, height = 300, callback) {
             resize_canvas.width = width;
             resize_canvas.height = height;
             let cnv = resize_canvas.getContext('2d');
-            cnv.drawImage(orig_src, 110, 490, width, height, 0, 0, width, height);
+            cnv.drawImage(orig_src, xstart, ystart, width, height, 0, 0, width, height);
             let newimgUri = resize_canvas.toDataURL("image/png").toString();
             callback(newimgUri);
         }

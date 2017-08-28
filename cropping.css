@@ -42,19 +42,24 @@ footer{
 }
 
 textarea{
-    /* display:block; */
+     display:block;
     padding:5px;
-    margin:5px;
 } 
 
 label{
-    display:block;
+    /* display:block; */
     margin-top:10px;
 }
  input{
-    display:block;
+    /* display:inline-block; */
     margin:5px;
     padding:5px;
+}
+
+ input[type="file"], label[for="inputFile"]{
+     display:block; 
+    /* margin:5px;
+    padding:5px; */
 }
 
 input[type="submit"]{
@@ -84,11 +89,26 @@ input[type="submit"]{
 .col-3 {width: 25%;}
 .col-4 {width: 33.33%;}
 .col-5 {width: 41.66%;}
-.col-6 {width: 50%;}
+.col-6 {width: 50%; margin:auto;}
 .col-7 {width: 58.33%;}
 .col-8 {width: 66.66%;}
 .col-9 {width: 75%;}
 .col-10 {width: 83.33%;}
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
+
+ .images{
+    overflow: scroll;
+} 
+ /* ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+/* } */ */
+
+.inputParams{
+    box-sizing: border-box;
+    /* border:1px solid #555555; */
+    margin:2px;
+    padding:5px;
+}
 
