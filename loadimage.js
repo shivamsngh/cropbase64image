@@ -48,7 +48,10 @@ function readImage(input) {
         reader.onload = function (e) {
             let img = document.getElementById('sourceImage');
             img.src = e.target.result;
-            document.getElementById('sourceImageTextBox').value = e.target.result.toString();
+            img.onload = function () {
+                document.getElementById('sourceImageTextBox').value = e.target.result.toString();
+                document.getElementById('resolution').innerHTML = `Resolution(widthXheight)-: ${img.naturalWidth}X${img.naturalHeight}`;
+            }
         };
         reader.readAsDataURL(input.files[0]);
     }

@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <style>
+        #div1 {
+            width: 350px;
+            height: 70px;
+            padding: 10px;
+            border: 1px solid #aaaaaa;
+        }
+
+        #draggable-element {
+            width: 100px;
+            height: 100px;
+            border: 2px solid grey;
+            color: white;
+            padding: 10px 12px;
+             cursor: move; 
+            position: relative;
+            /* important (all position that's not `static`) */
+            resize: both;
+            overflow: auto;
+            
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="div1">
+        <div id="draggable-element"></div>
+    </div>
+    <script>
+        var selected = null, // Object of the element to be moved
+            x_pos = 0, y_pos = 0, // Stores x & y coordinates of the mouse pointer
+            x_elem = 0, y_elem = 0; // Stores top, left values (edge) of the element
+
+        // Will be called when user starts dragging an element
+        function _drag_init(elem) {
+            // Store the object of the element which needs to be moved
+            selected = elem;
+            selected.style.ver
+            x_elem = x_pos - selected.offsetLeft;
+            y_elem = y_pos - selected.offsetTop;
+        }
+
+        // Will be called when user dragging an element
+        function _move_elem(e) {
+            x_pos = document.all ? window.event.clientX : e.pageX;
+            y_pos = document.all ? window.event.clientY : e.pageY;
+            if (selected !== null) {
+                selected.style.left = (x_pos - x_elem) + 'px';
+                selected.style.top = (y_pos - y_elem) + 'px';
+            }
+        }
+
+        // Destroy the object when we are done
+        function _destroy() {
+            selected = null;
+        }
+
+        // Bind the functions...
+        document.getElementById('draggable-element').ondblclick = function () {
+            _drag_init(this);
+            return false;
+        };
+
+        document.onmousemove = _move_elem;
+        document.onmouseup = _destroy;
+    </script>
+</body>
+
+</html>
